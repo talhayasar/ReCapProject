@@ -3,6 +3,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Business.Concrete
@@ -30,6 +31,15 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
+        public void Add(Product product)
+        {
+            if (product.CarName.Length>=2 && product.DailyPrice>0)
+            {
+                _productDal.Add(product);
+                Console.WriteLine("eklendi");
+            }
+        }
+
         public List<Product> GetAll()
         {
             return _productDal.GetAll();
@@ -37,16 +47,20 @@ namespace Business.Concrete
 
         public List<Product> GetCarsByBrandId(int id)
         {
-            return _productDal.GetAll(p=>p.BrandId==id);
+            return _productDal.GetAll(p => p.BrandId == id);
         }
 
         public List<Product> GetCarsByColorId(int id)
         {
             return _productDal.GetAll(p => p.ColorId == id);
         }
+
         /*Burada çağırılan tüm metodlar aslında ProductManager'a aittir. Sadece biz constructor
 * olarak ıproductdal verdiğimiz için onun üzerinden metod çağırabiliyoruz.
 örneğin GetCarsByBrandId metodu bu class'a özgü ama ıproductdal'dan çağırıp içine filte koyuyoruz.*/
+        /*Çok zekice bir şey yaptık burada, getAll metodu sayesinde tüm kayıtları alıyoruz ama biz bir
+         filtre koyduk getall metoduna bu filtre sayesinde yeni metodlar türettik misal ıdsine göre
+        seçim yapmak için de getall metodunu kullandık ama sadece için bi filtre koyduk*/
 
     }
 }
