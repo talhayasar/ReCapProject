@@ -17,9 +17,9 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryProductDal()
         {
             _products = new List<Product> {
-               new Product{Id=1,BrandId=1,ColourId=1,DailyPrice=1000,ModelYear=2015,Description="Öğretmenden satılık temiz 2.El Corolla" },
-               new Product{Id=2,BrandId=2,ColourId=1,DailyPrice=2000,ModelYear=2020,Description="Doktordan satılık temiz 2.El Avensis" },
-               new Product{Id=3,BrandId=1,ColourId=2,DailyPrice=5000,ModelYear=2021,Description="Galeriden satılık sıfır 3008" }
+               new Product{Id=1,BrandId=1,ColorId=1,DailyPrice=1000,ModelYear=2015,Description="Öğretmenden satılık temiz 2.El Corolla" },
+               new Product{Id=2,BrandId=2,ColorId=1,DailyPrice=2000,ModelYear=2020,Description="Doktordan satılık temiz 2.El Avensis" },
+               new Product{Id=3,BrandId=1,ColorId=2,DailyPrice=5000,ModelYear=2021,Description="Galeriden satılık sıfır 3008" }
             };
         }
         public void Add(Product product)
@@ -58,7 +58,7 @@ namespace DataAccess.Concrete.InMemory
         public void Update(Product product)
         {
             Product productToUpdate = _products.SingleOrDefault(p=>p.Id==product.Id);
-            productToUpdate.ColourId = product.ColourId;
+            productToUpdate.ColorId = product.ColorId;
             productToUpdate.BrandId = product.BrandId;
             productToUpdate.DailyPrice = product.DailyPrice;
             productToUpdate.Description = product.Description;
